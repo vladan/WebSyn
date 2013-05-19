@@ -1,0 +1,7 @@
+{% macro list_names(items) -%}
+<ul>
+   {%- for item in items %}
+   <li>{{ item.key }} ({{ item.value }})</li>
+   {%- endfor %}
+</ul>
+{%- endmacro %}

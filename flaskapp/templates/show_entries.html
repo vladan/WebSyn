@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta http-equiv="content-type" content="text/html; charset=utf-8">
+      <title>Web sindikat</title>
+      <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+   </head>
+   <body>
+      <div class=page>
+         {% if companies %}
+         {% for company in companies %}
+         <div class=flash>{{ company.key }} {{ company.industries }}</div>
+         {% endfor %}
+         {% endif %}
+         {% if industries %}
+         {% for ind in industries %}
+         <div class=flash><b>{{ ind.key }}</b><ul>{{ ind.value }}</ul></div>
+         {% endfor %}
+         {% endif %}
+         {% block body %}{% endblock %}
+      </div>
+   </body>
+</html>

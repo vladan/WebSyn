@@ -1,0 +1,38 @@
+<html>
+   <head>
+      <script src="static/jquery-1.7.1.min.js"></script>
+      <script src="static/objdump.js"></script>
+
+      <script>
+         function poll(){
+            $.ajax({
+               type:'GET',
+               url:'/poll/i',
+               async:true,
+               cache:false,
+               timeout:60000,
+               success:function (data) {
+                  $('#content').append('<div>'+dump(data)+'</div>');
+                  setTimeout(poll,50);
+               },
+               error:function (req,sta,er){
+                  setTimeout(poll,3000);
+               },
+            });
+         }
+         $(document).ready(function(){
+            setTimeout(poll,5);
+         });
+      </script>
+   </head>
+   <body>
+      <div id="content">
+         {% import 'listitems.html' as list %}
+         {% if companies %}
+         {{ list.list_names(companies) }}
+         {% elif industries %}
+         {{ list.list_names(industries) }}
+         {% endif %}
+      </div>
+   </body>
+</html>

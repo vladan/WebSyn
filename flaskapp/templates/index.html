@@ -1,0 +1,40 @@
+<html>
+   <head>
+      <script src="static/jquery-1.7.1.min.js"></script>
+      <script src="static/objdump.js"></script>
+
+      <script>
+         function poll(){
+            $.ajax({
+               type:'GET',
+               url:'/poll',
+               async:true,
+               cache:false,
+               timeout:60000,
+               success:function (data) {
+                  $('#content').append('<div>'+dump(data)+'</div>');
+                  setTimeout(poll,50);
+               },
+               error:function (req,sta,er){
+                  setTimeout(poll,3000);
+               },
+            });
+         }
+         $(document).ready(function(){
+            setTimeout(poll,5);
+         });
+      </script>
+   </head>
+   <body>
+      <div id="content">
+         {% for e in entries %}
+         <div>
+            {% if e.name %}<b>{{ e.name }}</b>{% endif %}
+            {% if e.title %}<b>{{ e.title }}</b>{% endif %}
+            {% if e.content %}{{ e.content }}</b>{% endif %}
+            {% if e.url %}<a href="{{ e.url }}">{{ e.url }}</a>{% endif %}
+         </div>
+         {% endfor %}
+      </div>
+   </body>
+</html>

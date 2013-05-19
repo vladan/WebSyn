@@ -1,0 +1,11 @@
+A try to reimplement https://github.com/gemidjy/WebSyn in flask using couchdb.
+The goal is to make a live update app.
+
+The code is not complete, only partial implementations are done on both sides (couchdb's and flask's) and some poor code and/or strategy may be found.
+
+"""
+Publishing it under GPLv3 so that we can workout on common solution with further ideas and work.
+The lack of time and UI design are the biggest contrains.
+
+gem
+"""
